@@ -22,7 +22,7 @@ class DoodadBuilder extends Component {
             salad: 0,
             bacon: 0,
             cheese: 0,
-            meat: 2,
+            meat: 1,
         },
         totalPrice: 5
     }
@@ -69,6 +69,7 @@ class DoodadBuilder extends Component {
                     partAdded={this.addPartHandler}
                     partRemoved={this.removePartHandler}
                     disabled={disabledInfo}
+                    price={this.state.totalPrice}
                 />
             </Aux>
         );

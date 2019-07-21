@@ -5,7 +5,7 @@ import DoodadPart from './DoodadParts/DoodadPart';
 
 const doodad = (props) => {
 
-    const transformedDoodadParts = Object.keys(props.parts)
+    let transformedDoodadParts = Object.keys(props.parts)
     .map(partKey => {
         //console.log("partKey", partKey);
         return [...Array(props.parts[partKey])].map((_, i) => {
@@ -17,7 +17,7 @@ const doodad = (props) => {
         return prevVal.concat(currVal)
     }, []);
     if (transformedDoodadParts.length === 0) {
-        //transformedDoodadParts = <p>Please start adding doodad parts!</p>
+        transformedDoodadParts = <p>Please start adding doodad parts!</p>
     }
     //console.log(transformedDoodadParts);
     return (
