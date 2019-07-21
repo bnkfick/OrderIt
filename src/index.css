@@ -1,5 +1,52 @@
 body {
+  background: url("/assets/images/chalkboard.png") no-repeat center center fixed; 
+  background-size: cover;
+  background-color: #58535C;
+  color: white;
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 18px;
+  line-height: 1.6;
 }
+
+
+/* borders */
+#top,
+#bottom,
+#left,
+#right {
+  background-color:	#A2C6C6;
+  position: fixed;
+}
+
+#left,
+#right {
+  top: 0;
+  bottom: 0;
+  width: 10px;
+}
+
+#left {
+  left: 0;
+}
+
+#right {
+  right: 0;
+}
+
+#top,
+#bottom {
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+#top {
+  top: 0;
+}
+
+#bottom {
+  bottom: 0;
+}
+

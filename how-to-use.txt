@@ -7,13 +7,26 @@ Compare my code to yours to solve issues you might encounter. You may also copy 
 
 
 Build a 
+
+
 Bear
+Robot
+
 Fairy house
 Playhouse
-Sandwich
+Treehouse
+
+Biome
+
 Bed
+
 Boat
 Rocket
-Robot
+
+
+Cakes
+Cupcakes
+Sandwich
 Pizza
-Biome
+Salad
+Ice cream sundae

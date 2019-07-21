@@ -10,6 +10,7 @@ class App extends Component {
           <DoodadBuilder />
         </Layout>
       </div>
+      
     );
   }
 }

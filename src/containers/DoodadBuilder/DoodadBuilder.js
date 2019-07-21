@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Aux from '../../hoc/Aux';
 import Doodad from '../../components/Doodad/Doodad';
+import BuildControls from '../../components/Doodad/BuildControls/BuildControls';
+
 
 class DoodadBuilder extends Component { 
 
@@ -21,7 +23,7 @@ class DoodadBuilder extends Component {
         return (
             <Aux>
                 <Doodad parts={this.state.parts}/>
-                <div>Doodad Build Controls</div>
+                <BuildControls/>
             </Aux>
         );
     }

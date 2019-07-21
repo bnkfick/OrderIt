@@ -17,7 +17,8 @@ const doodad = (props) => {
         return prevVal.concat(currVal)
     }, []);
     if (transformedDoodadParts.length === 0) {
-        transformedDoodadParts = <p>Please start adding doodad parts!</p>
+        //transformedDoodadParts = 
+        <p>Please start adding doodad parts!</p>
     }
     console.log(transformedDoodadParts);
     return (
