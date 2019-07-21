@@ -4,6 +4,9 @@ import DoodadPart from './DoodadParts/DoodadPart';
 
 
 const doodad = (props) => {
+    
+    const transformedDoodadParts = Object.keys(props.parts);
+
     return (
         <div className={classes.Doodad}>
             <DoodadPart type="bread-top"/>
