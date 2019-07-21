@@ -42,6 +42,9 @@ class DoodadBuilder extends Component {
 
     removePartHandler = (type) => {
         const oldCount = this.state.parts[type];
+        if (oldCount <= 0) {
+            return;
+        }
         const updatedCount = oldCount - 1;
         const updatedParts = {
             ...this.state.parts
@@ -53,12 +56,19 @@ class DoodadBuilder extends Component {
         this.setState({totalPrice: newPrice, parts: updatedParts});
     }
     render () {
+        const disabledInfo = {
+            ...this.state.parts
+        };
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <=0;
+        }
         return (
             <Aux>
                 <Doodad parts={this.state.parts}/>
                 <BuildControls 
                     partAdded={this.addPartHandler}
                     partRemoved={this.removePartHandler}
+                    disabled={disabledInfo}
                 />
             </Aux>
         );
