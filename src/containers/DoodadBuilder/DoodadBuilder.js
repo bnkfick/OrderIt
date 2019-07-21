@@ -34,20 +34,32 @@ class DoodadBuilder extends Component {
             ...this.state.parts
         };
         updatedParts[type] = updatedCount;
-        const priceAddition = PART_PRICES[type];
+        const priceChange = PART_PRICES[type];
         const oldPrice = this.state.totalPrice;
-        const newPrice = oldPrice + priceAddition;
-        this.setState({totalPrice: newPrice, parts: updatedParts})
+        const newPrice = oldPrice + priceChange;
+        this.setState({totalPrice: newPrice, parts: updatedParts});
     }
 
-    removeIngredientHandler = (type) => {
-
+    removePartHandler = (type) => {
+        const oldCount = this.state.parts[type];
+        const updatedCount = oldCount - 1;
+        const updatedParts = {
+            ...this.state.parts
+        };
+        updatedParts[type] = updatedCount;
+        const priceChange = PART_PRICES[type];
+        const oldPrice = this.state.totalPrice;
+        const newPrice = oldPrice - priceChange;
+        this.setState({totalPrice: newPrice, parts: updatedParts});
     }
     render () {
         return (
             <Aux>
                 <Doodad parts={this.state.parts}/>
-                <BuildControls partAdded={this.addPartHandler}/>
+                <BuildControls 
+                    partAdded={this.addPartHandler}
+                    partRemoved={this.removePartHandler}
+                />
             </Aux>
         );
     }

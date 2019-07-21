@@ -23,6 +23,7 @@ const buildControls = (props) => (
             key={ctrl.label} 
             label={ctrl.label} 
             added={() => props.partAdded(ctrl.type)}
+            removed={() => props.partRemoved(ctrl.type)}
             />
         ))}
     </div>
