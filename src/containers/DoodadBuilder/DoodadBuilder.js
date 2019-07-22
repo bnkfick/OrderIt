@@ -80,6 +80,10 @@ class DoodadBuilder extends Component {
     purchaseCancelHandler = () => {
         this.setState({purchasing: false});
     }
+
+    purchaseContinueHandler = () => {
+        console.log("Order Summer function purchaseContinueHandler");
+    }
     render () {
         const disabledInfo = {
             ...this.state.parts
@@ -90,7 +94,12 @@ class DoodadBuilder extends Component {
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary parts={this.state.parts}/>
+                    <OrderSummary 
+                        parts={this.state.parts}
+                        totalPrice={this.state.totalPrice.toFixed(2)}
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseContinue={this.purchaseContinueHandler}
+                    />
                 </Modal>
                 <Doodad parts={this.state.parts}/>
                 <BuildControls 
