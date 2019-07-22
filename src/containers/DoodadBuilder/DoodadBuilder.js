@@ -27,11 +27,11 @@ class DoodadBuilder extends Component {
             meat: 1,
         },
         totalPrice: 5,
-        purchasable: true
+        purchasable: true,
+        purchasing: false
     }
 
     updatePurchaseState(updatedParts) {
-       
         const sum = Object.keys(updatedParts)
         .map(partKey => {
             return updatedParts[partKey];
@@ -41,6 +41,7 @@ class DoodadBuilder extends Component {
         }, 0);
         this.setState({purchasable: sum >0})
     }
+
     addPartHandler = (type) => {
         const oldCount = this.state.parts[type];
         const updatedCount = oldCount + 1;
@@ -71,6 +72,10 @@ class DoodadBuilder extends Component {
         this.setState({totalPrice: newPrice, parts: updatedParts});
         this.updatePurchaseState(updatedParts);
     }
+
+    purchaseHandler = () => {
+        this.setState({purchasing: true});
+    }
     render () {
         const disabledInfo = {
             ...this.state.parts
@@ -80,13 +85,14 @@ class DoodadBuilder extends Component {
         }
         return (
             <Aux>
-                <Modal><OrderSummary parts={this.state.parts}/></Modal>
+                <Modal show={this.state.purchasing}><OrderSummary parts={this.state.parts}/></Modal>
                 <Doodad parts={this.state.parts}/>
                 <BuildControls 
                     partAdded={this.addPartHandler}
                     partRemoved={this.removePartHandler}
                     disabled={disabledInfo}
                     purchasable={this.state.purchasable}
+                    order={this.purchaseHandler}
                     price={this.state.totalPrice}
                 />
             </Aux>
