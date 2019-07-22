@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import Doodad from '../../components/Doodad/Doodad';
 import BuildControls from '../../components/Doodad/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Doodad/OrderSummary/OrderSummary';
 
 const PART_PRICES = {
     salad: 0.5,
@@ -24,9 +26,21 @@ class DoodadBuilder extends Component {
             cheese: 0,
             meat: 1,
         },
-        totalPrice: 5
+        totalPrice: 5,
+        purchasable: true
     }
 
+    updatePurchaseState(updatedParts) {
+       
+        const sum = Object.keys(updatedParts)
+        .map(partKey => {
+            return updatedParts[partKey];
+        })
+        .reduce((sum, el) => {
+            return sum + el;
+        }, 0);
+        this.setState({purchasable: sum >0})
+    }
     addPartHandler = (type) => {
         const oldCount = this.state.parts[type];
         const updatedCount = oldCount + 1;
@@ -38,6 +52,7 @@ class DoodadBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice + priceChange;
         this.setState({totalPrice: newPrice, parts: updatedParts});
+        this.updatePurchaseState(updatedParts);
     }
 
     removePartHandler = (type) => {
@@ -54,6 +69,7 @@ class DoodadBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceChange;
         this.setState({totalPrice: newPrice, parts: updatedParts});
+        this.updatePurchaseState(updatedParts);
     }
     render () {
         const disabledInfo = {
@@ -64,11 +80,13 @@ class DoodadBuilder extends Component {
         }
         return (
             <Aux>
+                <Modal><OrderSummary parts={this.state.parts}/></Modal>
                 <Doodad parts={this.state.parts}/>
                 <BuildControls 
                     partAdded={this.addPartHandler}
                     partRemoved={this.removePartHandler}
                     disabled={disabledInfo}
+                    purchasable={this.state.purchasable}
                     price={this.state.totalPrice}
                 />
             </Aux>

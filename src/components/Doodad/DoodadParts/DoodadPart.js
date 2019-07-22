@@ -15,6 +15,7 @@ class DoodadPart extends Component {
             case ('bread-top'):
                 part = (
                     <div className={classes.BreadTop}>
+                    
                         {/*<div className={classes.Seeds1}></div>
                         <div className={classes.Seeds2}></div>*/}
                     </div>

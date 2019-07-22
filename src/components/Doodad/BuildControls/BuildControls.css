@@ -14,3 +14,63 @@
     color: #948077;
     font-size: 24px;
 }
+
+.order {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 2px;
+    border: none;
+    text-transform: uppercase;
+    font-family: 'Fredericka the Great', cursive;
+    background-color: #86C2B4;
+    color: #fff;
+    font-weight: 700;
+    margin: 20px;
+    font-size: 30px;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+.OrderButton {
+    background-color: #86C2B4;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #966909;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    box-shadow: 2px 2px 2px #966909;
+}
+
+.OrderButton:hover, .OrderButton:active {
+    background-color: #58535C;
+    border: 1px solid #966909;
+    color: #E7CD94;
+}
+
+.OrderButton:disabled {
+    background-color: #C7C6C6;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+    color: #888888;
+}
+
+.OrderButton:not(:disabled) {
+    animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
