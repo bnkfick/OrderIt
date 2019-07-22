@@ -1,9 +1,14 @@
 .Logo {
-    background-color: white;
-    padding: 8px;
+    background-color: transparent;
     height: 100%;
-}
+}   
 
 .Logo img {
     height: 100%;
+}
+
+@media (max-width: 499px) {
+    .Logo {
+        background-color: #58535C;
+    }
 }
