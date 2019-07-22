@@ -6,6 +6,7 @@ import BuildControls from '../../components/Doodad/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Doodad/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 
 const PART_PRICES = {
@@ -146,4 +147,5 @@ class DoodadBuilder extends Component {
     }
 }
 
-export default DoodadBuilder;
+
+export default withErrorHandler( DoodadBuilder, axios );
