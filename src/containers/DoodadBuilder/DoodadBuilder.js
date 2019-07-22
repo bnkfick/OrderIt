@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux/Aux';
 import Doodad from '../../components/Doodad/Doodad';
 import BuildControls from '../../components/Doodad/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
