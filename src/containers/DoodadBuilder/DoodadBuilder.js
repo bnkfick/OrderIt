@@ -23,18 +23,24 @@ class DoodadBuilder extends Component {
     //      this.state = {...}
     // }
     state = {
-        parts: {
-            salad: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 1,
-        },
+        parts: null,
         totalPrice: 5,
         purchasable: true,
         purchasing: false,
-        loading: false
+        loading: false,
+        error: false
     }
 
+    componentDidMount() {
+        axios.get('https://react-doodad.firebaseio.com/parts.json')
+            .then(response => {
+                
+                this.setState({ parts: response.data });
+                console.log(this.state.parts);
+            }).catch(error => {
+                this.setState({error: true})
+            });
+    }
     updatePurchaseState(updatedParts) {
         const sum = Object.keys(updatedParts)
             .map(partKey => {
@@ -118,34 +124,42 @@ class DoodadBuilder extends Component {
         for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
-        let orderSummary = <OrderSummary
-            parts={this.state.parts}
-            price={this.state.totalPrice}
-            purchaseCancelled={this.purchaseCancelHandler}
-            purchaseContinue={this.purchaseContinueHandler} />;
+        let orderSummary = null;
+        let doodad = this.state.error ? <p>Parts can't be loaded</p> : <Spinner />;
+
+        if (this.state.parts) {
+            doodad =  (
+                <Aux><Doodad parts={this.state.parts} />
+                    <BuildControls
+                        partAdded={this.addPartHandler}
+                        partRemoved={this.removePartHandler}
+                        disabled={disabledInfo}
+                        purchasable={this.state.purchasable}
+                        order={this.purchaseHandler}
+                        price={this.state.totalPrice}
+                    />
+                </Aux>);
+                orderSummary = (<OrderSummary
+                parts={this.state.parts}
+                price={this.state.totalPrice}
+                purchaseCancelled={this.purchaseCancelHandler}
+                purchaseContinue={this.purchaseContinueHandler} />);
+        }
         if (this.state.loading) {
             orderSummary = <Spinner />;
         }
         return (
             <Aux>
-                <Modal 
-                    show={this.state.purchasing} 
+                <Modal
+                    show={this.state.purchasing}
                     modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
-                <Doodad parts={this.state.parts} />
-                <BuildControls
-                    partAdded={this.addPartHandler}
-                    partRemoved={this.removePartHandler}
-                    disabled={disabledInfo}
-                    purchasable={this.state.purchasable}
-                    order={this.purchaseHandler}
-                    price={this.state.totalPrice}
-                />
+                {doodad}
             </Aux>
         );
     }
 }
 
 
-export default withErrorHandler( DoodadBuilder, axios );
+export default withErrorHandler(DoodadBuilder, axios);
