@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
 import DoodadBuilder from './containers/DoodadBuilder/DoodadBuilder';
+import Checkout from  './containers/Checkout/Checkout';
 
 class App extends Component {
   // state = {
@@ -18,6 +19,7 @@ class App extends Component {
         <Layout>
           {/*this.state.show ? <DoodadBuilder /> : null*/}
           <DoodadBuilder />
+          <Checkout />
         </Layout>
       </div>
       
