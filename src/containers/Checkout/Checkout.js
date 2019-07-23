@@ -10,10 +10,22 @@ class Checkout extends Component {
             bacon: 1
         }
     }
+
+    checkoutCancelled = () => {
+        this.props.history.goBack();
+    }
+
+    checkoutContinue = () => {
+        this.props.history.replace('/checkout/contact-data');
+    }
     render() {
         return (
             <div>
-                <CheckoutSummary parts={this.state.parts}/>
+                <CheckoutSummary 
+                    parts={this.state.parts}
+                    checkoutCancelled={this.checkoutCancelled}
+                    checkoutContinue={this.checkoutContinue}
+                    />
             </div>
         )
     }

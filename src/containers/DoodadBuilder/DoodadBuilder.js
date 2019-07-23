@@ -32,6 +32,7 @@ class DoodadBuilder extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         axios.get('https://react-doodad.firebaseio.com/parts.json')
             .then(response => {
                 
@@ -92,31 +93,33 @@ class DoodadBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        console.log("Order Summer function purchaseContinueHandler");
-        this.setState({ loading: true });
-        const order = {
-            ingredients: this.state.parts,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Barbara Fick',
-                address: {
-                    street: '35th Ave',
-                    zipCode: '93326',
-                    country: 'Germany'
-                },
-                email: 'bkantzos@yahoo.com'
-            },
-            deliveryMethod: 'fastest'
-        }
+        // console.log("Order Summer function purchaseContinueHandler");
+        // this.setState({ loading: true });
+        // const order = {
+        //     ingredients: this.state.parts,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Barbara Fick',
+        //         address: {
+        //             street: '35th Ave',
+        //             zipCode: '93326',
+        //             country: 'Germany'
+        //         },
+        //         email: 'bkantzos@yahoo.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
 
-        axios.post('/orders.json', order)
-            .then(response => {
-                this.setState({ loading: false, purchasing: false });
-            })
-            .catch(error => {
-                this.setState({ loading: false, purchasing: false });
-            });
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({ loading: false, purchasing: false });
+        //     })
+        //     .catch(error => {
+        //         this.setState({ loading: false, purchasing: false });
+        //   });
+        console.log(this.props.history.push('/checkout'));
     }
+
     render() {
         const disabledInfo = {
             ...this.state.parts
