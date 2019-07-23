@@ -93,34 +93,12 @@ class DoodadBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        // console.log("Order Summer function purchaseContinueHandler");
-        // this.setState({ loading: true });
-        // const order = {
-        //     ingredients: this.state.parts,
-        //     price: this.state.totalPrice,
-        //     customer: {
-        //         name: 'Barbara Fick',
-        //         address: {
-        //             street: '35th Ave',
-        //             zipCode: '93326',
-        //             country: 'Germany'
-        //         },
-        //         email: 'bkantzos@yahoo.com'
-        //     },
-        //     deliveryMethod: 'fastest'
-        // }
 
-        // axios.post('/orders.json', order)
-        //     .then(response => {
-        //         this.setState({ loading: false, purchasing: false });
-        //     })
-        //     .catch(error => {
-        //         this.setState({ loading: false, purchasing: false });
-        //   });
         const queryParams = [];
         for (let i in this.state.parts) {
             queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.parts[i]));
         }
+        queryParams.push('price=' + this.state.totalPrice);
         const queryString = queryParams.join('&');
         this.props.history.push({
             pathname: 'checkout',
