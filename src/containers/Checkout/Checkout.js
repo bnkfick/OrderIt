@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import ContactData from './ContactData/ContactData';
+
 class Checkout extends Component {
     state = {
         parts: {
@@ -17,7 +20,7 @@ class Checkout extends Component {
         for (let param of query.entries()) {
             parts[param[0]] = +param[1];
         }
-        this.setState({parts: parts})
+        this.setState({ parts: parts })
     }
     checkoutCancelled = () => {
         this.props.history.goBack();
@@ -29,11 +32,14 @@ class Checkout extends Component {
     render() {
         return (
             <div>
-                <CheckoutSummary 
+                <CheckoutSummary
                     parts={this.state.parts}
                     checkoutCancelled={this.checkoutCancelled}
-                    checkoutContinue={this.checkoutContinue}
-                    />
+                    checkoutContinue={this.checkoutContinue} />
+                <Route
+                    path={this.props.match.path + '/contact-data'}
+                    component={ContactData}
+                />
             </div>
         )
     }
